@@ -1,0 +1,70 @@
+# Copyright Vespa.ai. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root.
+
+# A description of a type of data, how to store and index it, and what to compute over the data elements
+#
+# See:
+#  - https://docs.vespa.ai/en/schemas.html
+schema my_content {
+
+    document my_content {
+
+        field text type string {
+            indexing: summary | index
+        }
+
+        field number type int {
+            indexing: summary | attribute
+        }
+
+        field user_embedding type tensor<float>(x[384]) {
+            indexing: attribute
+            attribute {
+                distance-metric: angular
+            }
+        }
+
+    }
+
+    field auto_embedding type tensor<float>(x[384]) {
+        indexing: "passage: " . (input text || "") | embed e5 | attribute | index
+        attribute {
+            distance-metric: angular
+        }
+    }
+
+    fieldset default {
+        fields: text
+    }
+
+    # Rank profiles defines what to compute over the data, and how to use the computation result to order them
+    # They can be selected at query time (ranking.profile=[name]), and can be everything from simple handwritten
+    # expressions as below to references to large machine-learned models.
+    #
+    # See
+    #  - https://docs.vespa.ai/en/ranking.html
+
+    rank-profile just_text {
+        first-phase {
+            expression: nativeRank
+        }
+    }
+
+    rank-profile just_embedding {
+        inputs {
+            query(q) tensor<float>(x[384])
+        }
+        first-phase {
+            expression: closeness(field, auto_embedding)
+        }
+    }
+
+    rank-profile combined {
+        inputs {
+            query(embedding) tensor<float>(x[384])
+        }
+        first-phase {
+            expression: closeness(field, auto_embedding) + nativeRank
+        }
+    }
+
+}

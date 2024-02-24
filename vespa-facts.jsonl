@@ -1,0 +1,3 @@
+{"put": "id:mynamespace:my_content::a-fact-about-vespa", "fields": {"text": "Vespa is written mostly in C++ and Java"}}
+{"put": "id:mynamespace:my_content::another-fact-about-vespa", "fields": {"text": "Vespa is a software package for search and recommendation"}}
+{"put": "id:mynamespace:my_content::a-third-fact-about-vespa", "fields": {"text": "Vespa enables you to apply AI to select from your data in real-time"}}
