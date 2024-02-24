@@ -34,7 +34,8 @@ And try asking again!
 
 * Collect and feed in more information for the chatbot to use.
 * Modify the prompt in the nodejs-frontend
-* Change the way relevant information is selected (by modifying the [Vespa query](https://docs.vespa.ai/en/query-language.html) or the [ranking function](https://docs.vespa.ai/en/ranking-expressions-features.html)
+* Install the [Vespa CLI](https://docs.vespa.ai/en/vespa-cli.html) so you can do more things
+* Change the way relevant information is selected (by modifying the [Vespa query](https://docs.vespa.ai/en/query-language.html) in the frontend or the [ranking function](https://docs.vespa.ai/en/ranking-expressions-features.html) and/or [schema](https://docs.vespa.ai/en/schemas.html) in sample-app/schemas/my_content.sd (you'll have to use `vespa deploy` for these changes to take effect)
 * Write another front-end to do something entirely different
 * Test, find and fix bugs (there are usually some ...)
 
