@@ -23,8 +23,10 @@ Make sure to expose ports 8080 and 19071:
 ```bash
 podman run --name vespa --hostname vespa-container \
   --publish 8080:8080 --publish 19071:19071 \
-    quay.io/andreer/vespa-hack-pack-lite
+    quay.io/andreer/vespa-hack-pack-lite-intel
 ```
+
+(remove the `-intel` suffix if you have an ARM cpu.)
 
 When the docker image is started you can start the Node.js frontend:
 
