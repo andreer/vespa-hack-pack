@@ -18,7 +18,7 @@ Install Ollama with the `llama2` model on your laptop: go to https://ollama.com 
 
 Pull the container image and run it using Docker or Podman.
 
-Make sure to expose ports 8080 and 19071:
+Make sure to allow 4GB+ RAM for Docker/Podman, and expose ports 8080 and 19071.
 
 ```bash
 podman run --name vespa --hostname vespa-container \
