@@ -9,7 +9,11 @@ let chatHistory = [{ role: "system", content: prompt }];
 async function getVespaResults(query) {
   const fetch = require('node-fetch');
   let baseurl = "http://localhost:8080/search/?yql="
-  let yql = encodeURIComponent("select * from sources * where userQuery() limit 5")+"&query="+encodeURIComponent(query);
+  let yql = encodeURIComponent("select * from sources * where userQuery() or ({targetHits: 10}nearestNeighbor(auto_embedding, embedding)) limit 5") +
+    "&input.query(embedding)=" + encodeURIComponent("embed(e5, \"query:"+query+"\")") +
+    "&query="+encodeURIComponent(query) +
+    "&ranking=combined";
+  console.log(baseurl + yql);
   let vespaResponse = await (await fetch(baseurl + yql)).json();
 
   let children = vespaResponse.root.children || [];
@@ -20,7 +24,9 @@ async function getVespaResults(query) {
   var context = "Here is some factual information you have found by searching, which you can use to answer the question:";
     for (const result of children) {
       console.log("Retrieved result:", result.id, "with relevance score", result.relevance);
-      context = context + "\n" + result.fields.text;      
+      if(result.relevance > 0.7) {
+        context = context + "\n" + result.fields.text;
+      }
     }
     context = context + "\n" + "Now write a helpful and factual response to this:"
     results.push({role:"system", content:context})
