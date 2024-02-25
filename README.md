@@ -32,14 +32,17 @@ When the docker image is started you can start the Node.js frontend:
 cd nodejs-frontend && npm install && npm run dev
 ```
 
-Now, try going to http://localhost:3000 and ask: "What is a Glorbofel?"
+Now, try going to http://localhost:3000 and ask the following question:
+```
+What is a Glorbofel?
+```
 
 Feed in some relevant information with the command `vespa feed example-document.json`(Vespa CLI) or
 ```bash
 curl -X POST --data @example-document.json 'http://127.0.0.1:8080/document/v1/mynamespace/my_content/docid/example-document-id'
 ```
 
-And try asking again!
+And then try asking the same question again!
 
 ## Some possible next steps
 
