@@ -63,7 +63,7 @@ export default function Home() {
   const clearChat = async () => {
     // Clear the chat history in the client state
     setChatHistory([
-      { role: "system", content: "You are a helpful assistant." },
+      { role: "system", content: "Hi, how can I help you?" },
     ]);
 
     // Reset the chat history on the server
