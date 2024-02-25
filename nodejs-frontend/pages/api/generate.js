@@ -18,20 +18,25 @@ async function getVespaResults(query) {
 
   let children = vespaResponse.root.children || [];
   let results = [];
-  
+
+  var anyRelevant = false;
   if(children.length > 0) {
-    
-  var context = "Here is some factual information you have found by searching, which you can use to answer the question:";
+    var context = "Here is some factual information you have found by searching, which you can use to answer the question:";
     for (const result of children) {
       console.log("Retrieved result:", result.id, "with relevance score", result.relevance);
-      if(result.relevance > 0.7) {
+      if(result.relevance > 0.66) {
+        anyRelevant = true;
         context = context + "\n" + result.fields.text;
       }
     }
     context = context + "\n" + "Now write a helpful and factual response to this:"
     results.push({role:"system", content:context})
   }
-  return results;
+  if(anyRelevant) {
+    return results;
+  } else {
+    return [];
+  }
 }
 
 export default async function handler(req, res) {
