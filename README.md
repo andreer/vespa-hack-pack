@@ -54,13 +54,5 @@ And then try asking the same question again!
 * Select another [model](https://ollama.com/library) (`in nodejs-frontend/pages/api/generate.js`) - or modify nodejs-frontend/.env to use OpenAI
 * Test, find and fix bugs (there are usually some ...)
 
-## Using the docker image with Ollama included (5.9GiB):
-
-```bash
-podman run --name vespa --hostname vespa-container \
-  --publish 8080:8080 --publish 19071:19071 --publish 11434:11434 \
-    quay.io/andreer/vespa-hack-pack
-```
-
 ## Security warning
 Beware: No concern at all has been taken for security in this proof of concept, nothing is encrypted and all ports are wide open.
