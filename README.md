@@ -48,6 +48,7 @@ And then try asking the same question again!
 
 * Collect and feed in more information for the chatbot to use. See vespa-facts.jsonl for how to feed many documents efficiently.
 * Modify the prompt in the nodejs-frontend.
+* Understand what is happening in the retrieval stage - see [the function in generate.js](https://github.com/andreer/vespa-hack-pack/blob/main/nodejs-frontend/pages/api/generate.js#L9-L31)
 * Install the [Vespa CLI](https://docs.vespa.ai/en/vespa-cli.html) so you can do more Vespa things
 * Change the way relevant information is selected (by modifying the [Vespa query](https://docs.vespa.ai/en/query-language.html) or the [ranking function](https://docs.vespa.ai/en/ranking-expressions-features.html) in the [schema](https://docs.vespa.ai/en/schemas.html) in `sample-app/schemas/my_content.sd` (you'll have to use `vespa deploy` for these changes to take effect)
 * Write another front-end to do something entirely different
