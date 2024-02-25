@@ -2,13 +2,15 @@ import OpenAI from "openai";
 
 const openai = new OpenAI();
 
-const prompt = "You are a helpful assistant. You answer all questions briefly, and stick to what you know for sure.";
+const prompt = "You are a helpful assistant. You answer all questions briefly, and only provide factual information, without followup questions.";
 
 let chatHistory = [{ role: "system", content: prompt }];
 
 async function getVespaResults(query) {
   const fetch = require('node-fetch');
-  let vespaResponse = await (await fetch("http://localhost:8080/search/?yql=select * from sources * where true")).json();
+  let baseurl = "http://localhost:8080/search/?yql="
+  let yql = encodeURIComponent("select * from sources * where userQuery()")+"&query="+encodeURIComponent(query);
+  let vespaResponse = await (await fetch(baseurl + yql)).json();
 
   let children = vespaResponse.root.children || [];
   let results = [];
@@ -17,15 +19,12 @@ async function getVespaResults(query) {
     
   var context = "Here is some factual information you have found by searching, which you can use to answer the question:";
     for (const result of children) {
-      console.log("Retrieved result: ", result.id);
-      console.log("a");
-      context = context + "\n" + result.fields.text;
-      console.log("b");
+      console.log("Retrieved result: ", result.id);      
+      context = context + "\n" + result.fields.text;      
     }
     console.log(context);
     context = context + "\n" + "Now use that information to make a helpful and accurate answer for this:"
     results.push({role:"system", content:context})
-    console.log(results);
   }
   return results;
 }
