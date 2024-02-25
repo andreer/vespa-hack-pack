@@ -4,7 +4,7 @@ FROM vespaengine/vespa:latest
 USER root
 
 # pre-deploy template application
-ADD ../sample-app /root/sample-app 
+ADD sample-app /root/sample-app 
 
 RUN /usr/local/bin/start-container.sh & (sleep 20 && vespa deploy /root/sample-app) & sleep 60
 
