@@ -5,7 +5,7 @@ A "hack pack" to quickly get started with a RAG architecture chat bot built on [
 
 ## What do I need?
 * You must be able to download and run a container image, using e.g. [Podman](https://podman.io) or [Docker](https://www.docker.com).
-* You need [nodejs](https://nodejs.org/en) to run the demo front-end.
+* You need [Node.js](https://nodejs.org/en) to run the demo front-end.
 
 ## How do I use it?
 
