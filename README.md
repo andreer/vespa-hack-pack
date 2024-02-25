@@ -1,4 +1,4 @@
-# Vespa RAG "hack pack"
+# Vespa [Retrieval Augmented Generation](https://arxiv.org/abs/2005.11401) "hack pack"
 
 ## What is this?
 A "hack pack" to quickly get started with a RAG architecture chat bot built on [Vespa](vespa.ai) and [Ollama](https://ollama.com).
