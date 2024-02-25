@@ -1,7 +1,7 @@
 # Vespa RAG "hack pack"
 
 ## What is this?
-A "hack pack" to quickly get started with a RAG architecture chat bot built on [Vespa](vespa.ai) and ollama.
+A "hack pack" to quickly get started with a RAG architecture chat bot built on [Vespa](vespa.ai) and [Ollama](https://ollama.com).
 
 ## What do I need?
 * You must be able to download and run a container image, using e.g. [Podman](https://podman.io) or [Docker](https://www.docker.com).
