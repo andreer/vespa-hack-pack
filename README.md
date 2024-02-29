@@ -14,8 +14,7 @@ Clone this git repo, and cd into it.
 git clone git@github.com:andreer/vespa-hack-pack.git && cd vespa-hack-pack
 ```
 
-Install Ollama with the `llama2` model on your laptop: go to https://ollama.com to download and install it. If you don't want to, see the section at the end.
-
+Install Ollama with the `llama2` model on your laptop: go to https://ollama.com to download and install it.
 Pull the container image and run it using Docker or Podman.
 
 Make sure to allow 4GB+ RAM for Docker/Podman, and expose ports 8080 and 19071.
